@@ -8,27 +8,29 @@ my-express-app/
 │ └── db.js # PostgreSQL connection setup
 ├── routes/
 │ └── users.js # API route handlers for CRUD operations
+├── middleware/
+│ └── errorHandler.js # Centralized error handling
 ├── index.js # Main server file
 ├── .gitignore
+├── .env.example # Sample environment variables
 ├── package.json
 └── README.md
-
-
----
 
 ## ⚙️ Prerequisites
 
 Before running this project, make sure you have the following installed:
+
 - [Node.js](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - npm (comes with Node.js)
 
-
 ## 🛠️ Setup Instructions
+
 1. Clone the Repository
+
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Sa-keenah/my-express-app.git
+cd my-express-app
 
 2. Install Dependencies
 npm install
@@ -45,16 +47,15 @@ CREATE TABLE users (
 );
 
 4. Configure Database Connection
-You can either:
-Edit db/db.js and hardcode your PostgreSQL credentials
-(Recommended) Create a .env file and add your credentials:
+Create a .env file in the root directory (or use .env.example as a template):
+PORT=3000
 DB_USER=postgres
 DB_HOST=localhost
 DB_NAME=mydb
 DB_PASSWORD=yourpassword
 DB_PORT=5432
 
-Update db/db.js like this to use environment variables:
+Make sure db/db.js loads from this .env:
 require('dotenv').config();
 const { Pool } = require('pg');
 
@@ -69,9 +70,10 @@ const pool = new Pool({
 module.exports = pool;
 
 5. Start the Server
+For development:
 npm run dev
 
-or for production:
+For production:
 npm start
 
 Visit: http://localhost:3000
@@ -93,7 +95,7 @@ Visit: http://localhost:3000
 }
 
 📄 .gitignore (included)
-The .gitignore file ensures that sensitive and unnecessary files are excluded from version control:
+Ensures sensitive or unnecessary files are excluded from version con
 node_modules/
 .env
 .vscode/
@@ -106,11 +108,4 @@ This project is licensed under the ISC License.
 Amina Ismail Umar
 GitHub: @Sa-keenah
 
-### ✅ What to Do Next:
-1. Save the above content in a new file: `README.md`
-2. Replace `"your-username"` and `"your-repo-name"` with your actual GitHub info
-3. If you haven't yet:
-   ```bash
-   git add README.md
-   git commit -m "Add project README"
-   git push
+
